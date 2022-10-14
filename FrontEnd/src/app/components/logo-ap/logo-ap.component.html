@@ -10,7 +10,8 @@
                 <a href="https://www.instagram.com/matyurbi4/"><img src="../../../assets/instagram.png" alt=""></a>
                 <a href="https://github.com/UrbiML"><img src="../../../assets/github.png" alt=""></a>
                 <a href=""><img src="../../../assets/linkedin.png" alt=""></a>
-                <button type="button" class="btn btn-outline-light">INGRESAR</button>
+                <button type="button" class="btn btn-outline-light" (click)="login()" *ngIf="!isLogged">INGRESAR</button>
+                <button type="button" class="btn btn-outline-light" (click)="onLogOut()" *ngIf="isLogged">Cerrar Sesion</button>
             </div>
         </div>
     </div>
