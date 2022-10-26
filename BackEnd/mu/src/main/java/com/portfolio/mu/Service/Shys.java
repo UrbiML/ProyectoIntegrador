@@ -8,14 +8,14 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.portfolio.mu.Dao.Ihys;
+import com.portfolio.mu.Dao.IhysDao;
 import com.portfolio.mu.Entity.HyS;
 
 @Transactional
 @Service
 public class Shys {
 	@Autowired
-	Ihys iHys;
+	IhysDao iHys;
 	
 	public List<HyS> list(){
 		return iHys.findAll();

@@ -9,7 +9,7 @@ import com.portfolio.mu.Entity.HyS;
 
 
 @Repository
-public interface Ihys extends JpaRepository<HyS, Integer> {
+public interface IhysDao extends JpaRepository<HyS, Integer> {
 	Optional<HyS> findByNombre(String nombre);
 	public boolean existsByNombre(String nombre);
 }

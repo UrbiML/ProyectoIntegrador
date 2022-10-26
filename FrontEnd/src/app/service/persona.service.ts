@@ -8,11 +8,19 @@ import { Persona } from '../model/persona.model';
   providedIn: 'root'
 })
 export class PersonaService {
-  URL = environment.URL + '/api';
+  URL = environment.URL + '/persona/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   public getPersona(): Observable<Persona>{
-    return this.http.get<Persona>(this.URL+ '/persona/traer/perfil');
+    return this.httpClient.get<Persona>(this.URL + 'lista');
+  }
+
+  public detail(id: number): Observable<Persona>{
+    return this.httpClient.get<Persona>(this.URL + `detail/${id}`);
+  }
+
+  public update(id: number, persona: Persona): Observable<any>{
+    return this.httpClient.put<any>(this.URL + `update/${id}`, persona)
   }
 }

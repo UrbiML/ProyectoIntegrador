@@ -38,12 +38,12 @@ public class HysController {
 	
 	
 	@GetMapping("/detail/{id}")
-	   public ResponseEntity<HyS> getById(@PathVariable("id") int id){
-	       if(!shys.existsById(id)) {
-	           return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
-	       }
-	       HyS hys = shys.getOne(id).get();
-	       return new ResponseEntity(hys, HttpStatus.OK);
+	public ResponseEntity<HyS> getById(@PathVariable("id") int id){
+	    if(!shys.existsById(id)) {
+	        return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
+	    }
+	    HyS hys = shys.getOne(id).get();
+	    return new ResponseEntity(hys, HttpStatus.OK);
 	}
 	
 	
@@ -61,6 +61,7 @@ public class HysController {
 	public ResponseEntity<?> create(@RequestBody dtoHys dtohys){
 		if(StringUtils.isBlank(dtohys.getNombre())) 
 			return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+		
 		if(shys.existsByNombre(dtohys.getNombre())) 
 			return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
 		
@@ -74,7 +75,7 @@ public class HysController {
 		if(!shys.existsById(id))
             return new ResponseEntity(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
         
-        //Compara nombre de experiencias
+        //Compara nombre de Skills
         if(shys.existsByNombre(dtohys.getNombre()) && shys.getByNombre(dtohys.getNombre()).get().getId() != id)
             return new ResponseEntity(new Mensaje("Hard & Skill ya existente"), HttpStatus.BAD_REQUEST);
         
