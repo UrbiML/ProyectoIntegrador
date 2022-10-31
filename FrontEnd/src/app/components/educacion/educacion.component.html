@@ -1,9 +1,9 @@
 <div class="row">
     <h1>Educacion</h1>
     <div class="col-lg-2">
-        <td *ngIf="user == 'admin'"><button type="button" class="btn btn-dark" routerLink="/nuevaedu" *ngIf="isLogged">
+        <button type="button" class="btn btn-dark" routerLink="/nuevaedu" *ngIf="isLogged">
              Agregar Educacion
-        </button></td>
+        </button>
     </div>
 
     <table class="table">
@@ -11,8 +11,8 @@
             <tr *ngFor="let Educacion of educacion">
                 <td><h2>{{Educacion.nombreEdu}}</h2></td>
                 <td>{{Educacion.descripcionEdu}}</td>
-                <td *ngIf="isLogged && user == 'admin'"><button class="btn btn-secondary" routerLink="/editedu/{{Educacion.id}}"><i class="bi bi-pencil"></i>Editar</button></td>
-                <td *ngIf="isLogged && user == 'admin'"><button class="btn btn-danger" (click)="delete(Educacion.id)"><i class="bi bi-trash3-fill"></i>Borrar</button></td>
+                <td *ngIf="isLogged"><button class="btn btn-secondary" routerLink="/editedu/{{Educacion.id}}"><i class="bi bi-pencil"></i>Editar</button></td>
+                <td *ngIf="isLogged"><button class="btn btn-danger" (click)="delete(Educacion.id)"><i class="bi bi-trash3-fill"></i>Borrar</button></td>
             </tr>
         </tbody>
     </table>

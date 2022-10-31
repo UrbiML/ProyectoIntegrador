@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Educacion } from 'src/app/model/educacion';
 import { EducacionService } from 'src/app/service/educacion.service';
 
@@ -11,7 +12,13 @@ import { EducacionService } from 'src/app/service/educacion.service';
 export class EditeducacionComponent implements OnInit {
   educacion: Educacion = null;
 
-  constructor(private educacionS: EducacionService, private activatedRouter: ActivatedRoute, private router: Router) { }
+  constructor(
+    private educacionS: EducacionService,
+    private activatedRouter: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService
+    ) { }
+
 
   ngOnInit(): void {
     const id = this.activatedRouter.snapshot.params['id'];
@@ -19,19 +26,27 @@ export class EditeducacionComponent implements OnInit {
       data => {
         this.educacion = data;
       }, err => {
-        alert("Error al modificar");
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000, positionClass: 'toast-top-center',
+        })
         this.router.navigate(['']);
       }
-    )
+    );
   }
+
 
   onUpdate(): void {
     const id = this.activatedRouter.snapshot.params['id'];
     this.educacionS.update(id, this.educacion).subscribe(
       data => {
+        this.toastr.success('Producto Actualizado', 'OK', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
         this.router.navigate(['']);
       }, err => {
-        alert("Error al modificar");
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000,  positionClass: 'toast-top-center',
+        });
         this.router.navigate(['']);
       }
     )

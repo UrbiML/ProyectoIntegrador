@@ -1,5 +1,8 @@
+<nav class="navbar navbar-dark bg-dark">
+    <div class="navbar-brand"></div>
+</nav>
 <div class="container">
-    <div class="row">
+    <div class="card mt-5">
         <div>
             <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
                 <div class="form-group">
@@ -7,13 +10,13 @@
                     <input type="text" class="form-control" id="nombreEdu" name="nombreEdu" [(ngModel)]="nombreEdu" required>
                 </div>
                 <div class="form-group">
-                    <label for="descripcionEdu">Descipción</label>
+                    <label for="descripcionEdu">Descripción</label>
                     <input type="text" class="form-control" id="descripcionEdu" name="descripcionEdu" [(ngModel)]="descripcionEdu" required>
                 </div>
                 
                 <br>
                 <button class="btn btn-primary">
-                    Agregar educacion
+                    Agregar educación
                 </button>
             </form>
         </div>

@@ -12,26 +12,21 @@ import { LoginComponent } from './components/auth/login.component';
 import { RegistroComponent } from './components/auth/registro.component';
 import { EditProyectosComponent } from './components/proyectos/edit-proyectos.component';
 import { NewProyectosComponent } from './components/proyectos/new-proyectos.component';
-import { AdminComponent } from './components/users/admin.component';
-import { UserComponent } from './components/users/user.component';
-import { ProdGuardService as guard } from './guards/prod-guard.service';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
   {path:'login', component: LoginComponent},
-  {path:'registro', component: RegistroComponent },
-  {path:'nuevaexp', component: NewExperienciaComponent , canActivate: [guard], data: { expectRol: ['admin']}},
-  {path:'editexp/:id', component: EditExperienciaComponent, canActivate: [guard], data: { expectRol: ['admin']}},
-  {path:'nuevaedu', component: NeweducacionComponent, canActivate: [guard], data: { expectRol: ['admin']}},
-  {path:'editedu/:id', component: EditeducacionComponent, canActivate: [guard], data: { expectRol: ['admin']}},
-  {path:'nuevahys', component: NewSkillComponent, canActivate: [guard], data: { expectRol: ['admin']}},
-  {path:'edithys/:id', component: EditSkillComponent, canActivate: [guard], data: { expectRol: ['admin']}},
-  {path:'editaracercade/:id', component: EditAcercaDeComponent, canActivate: [guard], data: { expectRol: ['admin']}},
-  {path:'nuevoproyecto', component: NewProyectosComponent, canActivate: [guard], data: { expectRol: ['admin']}},
-  {path:'editeproyecto/:id', component: EditProyectosComponent, canActivate: [guard], data: { expectRol: ['admin']}},
+  {path:'registro', component: RegistroComponent},
+  {path:'nuevaexp', component: NewExperienciaComponent},
+  {path:'editexp/:id', component: EditExperienciaComponent},
+  {path:'nuevaedu', component: NeweducacionComponent},
+  {path:'editedu/:id', component: EditeducacionComponent},
+  {path:'nuevahys', component: NewSkillComponent},
+  {path:'edithys/:id', component: EditSkillComponent},
+  {path:'editaracercade/:id', component: EditAcercaDeComponent},
+  {path:'nuevoproyecto', component: NewProyectosComponent},
+  {path:'editeproyecto/:id', component: EditProyectosComponent},
 
-  {path: 'admin', component: AdminComponent, canActivate: [guard], data: {expectedRol: ['admin']}},
-  {path: 'user', component: UserComponent, canActivate: [guard], data: {expectedRol: ['user']}}
 ];
 
 @NgModule({

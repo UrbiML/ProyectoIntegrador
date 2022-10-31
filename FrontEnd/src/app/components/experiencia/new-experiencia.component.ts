@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Experiencia } from 'src/app/model/experiencia';
 import { SExperienciaService } from 'src/app/service/s-experiencia.service';
 
@@ -12,7 +13,10 @@ export class NewExperienciaComponent implements OnInit {
   nombreE: string = '';
   descripcionE: string = '';
 
-  constructor(private sExperiencia: SExperienciaService, private router: Router) { }
+  constructor(
+    private sExperiencia: SExperienciaService,
+     private router: Router,
+      private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -20,13 +24,17 @@ export class NewExperienciaComponent implements OnInit {
   onCreate(): void{
     const expe = new Experiencia(this.nombreE, this.descripcionE);
     this.sExperiencia.save(expe).subscribe(
-      data => 
-        {alert("Experiencia añadida");
+      data => {
+        this.toastr.success('Experiencia Creada', 'OK', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
         this.router.navigate(['']);
       }, err =>{
-        alert("Falló");
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
         this.router.navigate(['']);
-      }
+      }  
     )
   }
 }

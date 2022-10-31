@@ -10,6 +10,8 @@ import com.portfolio.mu.Security.Service.RolService;
 import com.portfolio.mu.Security.Service.UsuarioService;
 import com.portfolio.mu.Security.Controller.Mensaje;
 import com.portfolio.mu.Security.jwt.JwtProvider;
+
+import java.text.ParseException;
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.Valid;
@@ -20,7 +22,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -86,11 +87,18 @@ public class AuthController {
         
         String jwt = jwtProvider.generateToken(authentication);
         
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        
-        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+        JwtDto jwtDto = new JwtDto(jwt);
         
         return new ResponseEntity<Object>(jwtDto, HttpStatus.OK);
     }
     
-}
+    
+    @PostMapping("/refresh")
+    public ResponseEntity<JwtDto> refresh(@RequestBody JwtDto jwtDto) throws ParseException{
+    	String token = jwtProvider.refreshToken(jwtDto);
+    	JwtDto jwt = new JwtDto(token);
+    	return new ResponseEntity(jwt, HttpStatus.OK);
+    }
+    
+    
+}	

@@ -10,9 +10,13 @@ div{
 #nombre{
     font-weight: bold;
     margin-top: 15%;
-    margin-left: 10px;
+    margin-left: -250%;
 }
 
+#titulo{
+    margin-top: -5%;
+    margin-left: -250%;
+}
 
 /*estilo foto de perfil*/
 @media (min-width: 576px){
@@ -22,7 +26,7 @@ div{
         border-radius: 100%;
         box-shadow: 3px 3px 3px grey;
         left: 4%;
-        top: 600px;
+        top: 580px;
     }
 }
 @media (max-width: 575px){

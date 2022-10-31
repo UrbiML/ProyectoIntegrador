@@ -9,18 +9,19 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./educacion.component.css']
 })
 export class EducacionComponent implements OnInit {
-  
-  @Input() user: string;
 
   educacion: Educacion[] = [];
 
 
-  constructor(private educacionS: EducacionService, private tokenService: TokenService) { }
+  constructor(
+    private educacionS: EducacionService,
+     private tokenService: TokenService) { }
 
   isLogged = false;
 
   ngOnInit(): void {
     this.cargarEducacion();
+    
     if(this.tokenService.getToken()){
       this.isLogged = true;
     } else {
